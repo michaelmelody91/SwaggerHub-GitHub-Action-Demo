@@ -26,7 +26,11 @@ jobs:
           message: "Publish API"
           add: "api.yaml"
           branch: main
+      - name: Extract branch name
+        shell: bash
+        run: echo "::set-output name=version::$(node ./bin/get_version.js)"
+        id: get_version
       - uses: smartbear/swaggerhub-cli@3ee9d3ea4539a3db6c408afc55dbca308f804148
-        continue-on-error: true
+        continue-on-error: false
         with:
-          args: api:publish michaelmelody/DemoAPI -f ./api.yaml
+          args: api:publish michaelmelody/DemoAPI/${{ steps.get_version.outputs.version }}
