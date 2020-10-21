@@ -26,7 +26,7 @@ jobs:
           message: "Publish API"
           add: "api.yaml"
           branch: main
-      - name: Extract branch name
+      - name: Extract version
         shell: bash
         run: echo "::set-output name=version::$(node ./bin/get_version.js)"
         id: get_version
