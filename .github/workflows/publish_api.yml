@@ -1,0 +1,29 @@
+name: Update SwaggerHub while developing API
+on: [ release ]
+env:
+  SWAGGERHUB_API_KEY: ${{ secrets.SWAGGERHUB_API_KEY }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+jobs:
+  release-swaggerhub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.15.0
+      - name: Install Node.js dependencies
+        uses: bahmutov/npm-install@v1.4.3
+      - name: Remove SNAPSHOT
+        run: node ./bin/remove_snapshot.js
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v5
+        with:
+          author_name: SwaggerHub CI
+          author_email: mail@example.com
+          message: "Publish API"
+          add: "api.yaml"
+      - uses: smartbear/swaggerhub-cli@3ee9d3ea4539a3db6c408afc55dbca308f804148
+        continue-on-error: true
+        with:
+          args: api:create michaelmelody/DemoAPI -f ./api.yaml --visibility=public
