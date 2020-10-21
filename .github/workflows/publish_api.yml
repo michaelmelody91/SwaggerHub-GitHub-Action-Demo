@@ -23,6 +23,7 @@ jobs:
           author_email: mail@example.com
           message: "Publish API"
           add: "api.yaml"
+          branch: main
       - uses: smartbear/swaggerhub-cli@3ee9d3ea4539a3db6c408afc55dbca308f804148
         continue-on-error: true
         with:
