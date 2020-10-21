@@ -1,5 +1,7 @@
-name: Update SwaggerHub while developing API
-on: [ release ]
+name: Publish API on release
+on:
+  release:
+    types: [published]
 env:
   SWAGGERHUB_API_KEY: ${{ secrets.SWAGGERHUB_API_KEY }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
@@ -31,6 +33,8 @@ jobs:
         run: echo "::set-output name=release_version::$(node ./bin/get_version.js)"
         id: get_latest_version
       - uses: smartbear/swaggerhub-cli@3ee9d3ea4539a3db6c408afc55dbca308f804148
-        continue-on-error: false
         with:
           args: api:publish michaelmelody/DemoAPI/${{ steps.get_latest_version.outputs.release_version }}
+      - uses: smartbear/swaggerhub-cli@3ee9d3ea4539a3db6c408afc55dbca308f804148
+        with:
+          args: api:setdefault michaelmelody/DemoAPI/${{ steps.get_latest_version.outputs.release_version }}
