@@ -1,0 +1,28 @@
+{
+  "name": "SwaggerHub-GitHub-Action-Demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "SwaggerHub-GitHub-Action-Demo": "remove_snapshot.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelmelody91/SwaggerHub-GitHub-Action-Demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelmelody91/SwaggerHub-GitHub-Action-Demo/issues"
+  },
+  "homepage": "https://github.com/michaelmelody91/SwaggerHub-GitHub-Action-Demo#readme",
+  "dependencies": {
+    "fs-extra": "^9.0.1",
+    "js-yaml": "^3.14.0",
+    "lodash": "^4.17.20"
+  }
+}
