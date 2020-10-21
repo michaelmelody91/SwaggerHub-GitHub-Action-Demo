@@ -22,7 +22,7 @@ jobs:
         id: get_snapshot_version  
       - uses: wei/curl@v1
         with:
-          args: -X DELETE https://api.swaggerhub.com/apis/michaelmelody/DemoAPI/${{ steps.get_version.outputs.snapshot_version }} -H "Bearer ${{ secrets.SWAGGERHUB_API_KEY }}"
+          args: -X DELETE https://api.swaggerhub.com/apis/michaelmelody/DemoAPI/${{ steps.get_snapshot_version.outputs.snapshot_version }} -H "Bearer ${{ secrets.SWAGGERHUB_API_KEY }}"
       - name: Remove SNAPSHOT
         run: node ./bin/remove_snapshot.js
       - name: Commit changes
@@ -40,4 +40,4 @@ jobs:
       - uses: smartbear/swaggerhub-cli@3ee9d3ea4539a3db6c408afc55dbca308f804148
         continue-on-error: false
         with:
-          args: api:publish michaelmelody/DemoAPI/${{ steps.get_version.outputs.release_version }}
+          args: api:publish michaelmelody/DemoAPI/${{ steps.get_latest_version.outputs.release_version }}
