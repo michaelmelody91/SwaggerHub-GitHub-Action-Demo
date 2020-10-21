@@ -12,5 +12,5 @@ jobs:
       - uses: actions/checkout@v2
       - uses: smartbear/swaggerhub-cli@3ee9d3ea4539a3db6c408afc55dbca308f804148
         with:
-          args: api:update michaelmelody/DemoAPI -f ./api.yaml
+          args: api:update michaelmelody/DemoAPI -f ./api.yaml --visibility=public
 
